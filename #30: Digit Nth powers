@@ -1,0 +1,27 @@
+<?php
+$_fp = fopen("php://stdin", "r");
+/* Enter your code here. Read input from STDIN. Print output to STDOUT */
+
+fscanf($_fp, "%d", $n);
+
+for ($i=0;$i<=9;$i+=1) {
+    $powers[$i] = pow($i,$n);
+}
+$i=2;
+$c=1;
+$s=0;
+do {
+    $digits = str_split($i);
+    if ($c<count($digits)) {
+        $c+=1;
+        if ($c*$powers[9] < pow(10,$c-1)) break;
+    }
+    $y = 0;
+    for ($j=0;$j<$c;$j+=1) {
+        $y += $powers[$digits[$j]];
+    }
+    if ($i == $y) $s += $i;
+    $i += 1;
+} while (true);
+echo "$s\n";
+?>
